@@ -24,6 +24,8 @@ Plot2D[Plot2D == "?"] <- NA
 # Changes date into date class and excludes data outside of specified date range.
 Plot2D[[1]] <- as.Date(Plot2D[[1]], format = "%d/%m/%Y")
 Plot2D <- Plot2D[Plot2D$Date >= as.Date("2007-02-01") & Plot2D$Date <= as.Date("2007-02-02"),]
+
+# Joins data and time to create a new field.
 Plot2D$NewDate <- as.POSIXct(strptime(paste(Plot2D$Date, Plot2D$Time, sep = " "),format = "%Y-%m-%d %H:%M:%S"))
 
 
@@ -33,11 +35,9 @@ Plot2D$Global_active_power <- as.numeric(Plot1D$Global_active_power,)
 # Constructs the png for the graph.
 
 png(file="Plot2D.png", width = 480, height = 480, units = "px")
-with(Plot2D, plot(NewDate, Global_active_power),
-     type = "1",
-     xlab = "",
-     ylab = "Global Active Power (kilowatts)")
-
+with(Plot2D, {
+  plot(NewDate, Global_active_power, type='l', xlab='', ylab="Global Active Power (kilowatts)")
+  })
 # Shuts the file device.
 dev.off()
 
