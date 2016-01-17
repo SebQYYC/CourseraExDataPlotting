@@ -30,7 +30,7 @@ Plot2D$NewDate <- as.POSIXct(strptime(paste(Plot2D$Date, Plot2D$Time, sep = " ")
 
 
 # Changes Global_active_power to numeric class.
-Plot2D$Global_active_power <- as.numeric(Plot2D$Global_active_power,)
+Plot2D$Global_active_power <- as.numeric(Plot2D$Global_active_power)
 
 # Constructs the png for the graph.
 
